@@ -1,39 +1,41 @@
 #include <stdio.h>
-#include "transaction.h"
-
-volatile float balance = 0;
+#include "transactions.h"
 
 int main()
 {
     int choice;
+    register int menuChoice;
 
     do
     {
-        printf("\n===== ATM Menu =====\n");
+        printf("\n===== ATM =====\n");
         printf("1. Deposit\n");
         printf("2. Withdraw\n");
         printf("3. Check Balance\n");
         printf("4. Exit\n");
         printf("Enter your choice: ");
+
         scanf("%d", &choice);
 
-        switch (choice)
+        menuChoice = choice;
+
+        switch (menuChoice)
         {
-            case 1:
-                processTransaction((float *)&balance, 1);
+            case DEPOSIT:
+                processTransaction(&balance, DEPOSIT);
                 break;
 
-            case 2:
-                processTransaction((float *)&balance, 2);
+            case WITHDRAW:
+                processTransaction(&balance, WITHDRAW);
                 break;
 
             case 3:
-                printf("Current Balance: %.2f\n", balance);
+                printf("Current Balance = %.2f\n", balance);
                 break;
 
             case 4:
-                processTransaction((float *)&balance, 0);
-                printf("Thank you for using the ATM.\n");
+                processTransaction(&balance, EXIT);
+                printf("Thank you.\n");
                 break;
 
             default:

@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "transaction.h"
+#include "transactions.h"
 
 void processTransaction(float *balance, int type)
 {
@@ -8,7 +8,8 @@ void processTransaction(float *balance, int type)
 
     switch (type)
     {
-        case 1:
+        case DEPOSIT:
+
             printf("Enter deposit amount: ");
             scanf("%f", &amount);
 
@@ -22,9 +23,11 @@ void processTransaction(float *balance, int type)
             {
                 printf("Invalid amount.\n");
             }
+
             break;
 
-        case 2:
+        case WITHDRAW:
+
             printf("Enter withdrawal amount: ");
             scanf("%f", &amount);
 
@@ -38,10 +41,13 @@ void processTransaction(float *balance, int type)
             {
                 printf("Invalid transaction.\n");
             }
+
             break;
 
-        case 0:
-            printf("Total valid transactions: %d\n", transactionCount);
+        case EXIT:
+
+            printf("Total valid transactions = %d\n", transactionCount);
+
             break;
     }
 }
