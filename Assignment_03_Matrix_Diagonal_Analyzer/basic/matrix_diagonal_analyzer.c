@@ -1,67 +1,46 @@
 #include <stdio.h>
 
-int sumMainDiagonal(int matrix[3][3])
-{
-    int i;
-    int sum = 0;
+void searchElement(int *ptr, int target);
 
-    for (i = 0; i < 3; i++)
+int main()
+{
+
+    int arr[3][3] = {0};
+
+    for (int i = 0; i < 3; i++)
     {
-        sum += matrix[i][i];
+        for (int j = 0; j < 3; j++)
+        {
+            scanf("%d", &arr[i][j]);
+        }
     }
 
-    return sum;
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            printf("%d ", arr[i][j]);
+        }
+        printf("\n");
+    }
+    int search = 0;
+    printf("Enter your Target Number: ");
+    scanf("%d", &search);
+
+    searchElement(&arr[0][0], search);
 }
 
 void searchElement(int *ptr, int target)
 {
-    int i;
 
-    for (i = 0; i < 9; i++)
+    for (int i = 0; i < 3; i++)
     {
-        if (*(ptr + i) == target)
+        for (int j = 0; j < 3; j++)
         {
-            printf("Element found at row %d column %d\n", (i / 3)+1, (i % 3)+1);
-            return;
+            if (*(ptr + (i * 3) + j) == target)
+                printf("Number %d is at row %d and column %d", target, i + 1, j + 1);
+            else
+                continue;
         }
     }
-
-    printf("Element not found\n");
-}
-
-int main()
-{
-    int matrix[3][3];
-    int i, j;
-    int target;
-
-    printf("Enter the elements of the 3x3 matrix:\n");
-
-    for (i = 0; i < 3; i++)
-    {
-        for (j = 0; j < 3; j++)
-        {
-            scanf("%d", &matrix[i][j]);
-        }
-    }
-
-    printf("\nMatrix:\n");
-
-    for (i = 0; i < 3; i++)
-    {
-        for (j = 0; j < 3; j++)
-        {
-            printf("%d\t", matrix[i][j]);
-        }
-        printf("\n");
-    }
-
-    printf("\nSum of main diagonal = %d\n", sumMainDiagonal(matrix));
-
-    printf("Enter element to search: ");
-    scanf("%d", &target);
-
-    searchElement(&matrix[0][0], target);
-
-    return 0;
 }
