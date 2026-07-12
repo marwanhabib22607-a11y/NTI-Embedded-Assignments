@@ -1,1 +1,0 @@
-float balance = 0;
